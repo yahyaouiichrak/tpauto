@@ -43,22 +43,15 @@ pipeline {
         }
 
         stage('Notify Slack') {
-            when {
-                expression { return env.SLACK_TOKEN != null } // Slack optionnel
-            }
             steps {
-                slackSend(channel: '#devops', message: "✅ Pipeline terminé avec succès : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
+                slackSend(channel: '#project', message: "✅ Pipeline terminé avec succès : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
             }
         }
     }
 
     post {
         failure {
-            script {
-                if (env.SLACK_TOKEN != null) {
-                    slackSend(channel: '#devops', message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
-                }
-            }
+            slackSend(channel: '#project', message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
         }
     }
 }
