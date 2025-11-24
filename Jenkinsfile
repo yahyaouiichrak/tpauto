@@ -3,13 +3,13 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "ichrakyhy/cv-onepage" // Ton repo Docker Hub
-        DOCKER_CREDENTIALS = 'dockerhub'      // ID des credentials Docker Hub
-        GIT_REPO = 'https://github.com/yahyaouiichrak/tpauto.git' // Ton repo GitHub
+        DOCKER_IMAGE = "ichrakyhy/cv-onepage"
+        DOCKER_CREDENTIALS = 'dockerhub'
+        GIT_REPO = 'https://github.com/yahyaouiichrak/tpauto.git'
     }
 
     triggers {
-        pollSCM('H/5 * * * *') // Vérifie toutes les 5 minutes
+        pollSCM('H/5 * * * *')
     }
 
     stages {
@@ -21,12 +21,10 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh """
-                        docker build -t ${DOCKER_IMAGE}:latest .
-                        docker tag ${DOCKER_IMAGE}:latest ${DOCKER_IMAGE}:v${BUILD_NUMBER}
-                    """
-                }
+                sh """
+                    docker build -t ${DOCKER_IMAGE}:latest .
+                    docker tag ${DOCKER_IMAGE}:latest ${DOCKER_IMAGE}:v${BUILD_NUMBER}
+                """
             }
         }
 
@@ -42,18 +40,16 @@ pipeline {
             }
         }
 
-
         stage('Notify Slack') {
             steps {
                 slackSend(channel: '#project', message: "✅ Pipeline terminé avec succès : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})", tokenCredentialId: 'slack-token')
             }
         }
-
-        post {
-            failure {
-                slackSend(channel: '#project', message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})", tokenCredentialId: 'slack-token')
-            }
-        }
-
     }
-}    
+
+    post {
+        failure {
+            slackSend(channel: '#project', message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})", tokenCredentialId: 'slack-token')
+        }
+    }
+}
