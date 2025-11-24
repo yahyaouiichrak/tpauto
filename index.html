@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Ichrak Yahyaoui | Étudiante Master DevOps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset et variables globales */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --white: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* En-tête */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        header h2 {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            font-size: 1.3em;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .section-content {
+            margin-left: 10px;
+        }
+
+        .section-content ul {
+            padding-left: 20px;
+        }
+
+        .section-content li {
+            margin-bottom: 10px;
+        }
+
+        /* Compétences */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .skill {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            border: 1px solid var(--accent-color);
+        }
+
+        /* Projets */
+        .project {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--accent-color);
+        }
+
+        .project h3 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .project p {
+            color: var(--text-color);
+            font-style: italic;
+        }
+
+        /* Pied de page */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid var(--light-gray);
+            color: var(--secondary-color);
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .contact-info {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête -->
+        <header>
+            <h1>Ichrak Yahyaoui</h1>
+            <h2>Étudiante Master DevOps | Licence en Technologies de l'Informatique </h2>
+            <div class="contact-info">
+                <a href="mailto:ichrak.yahyaoui@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/ichrak-yahyaoui" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ichrakyahyaoui" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="tel:+21612345678" title="Téléphone"><i class="fas fa-phone"></i></a>
+            </div>
+        </header>
+
+        <!-- À propos -->
+        <section class="section">
+            <h2>À Propos</h2>
+            <div class="section-content">
+                <p>
+                    Étudiante en <strong>Master DevOps</strong>, passionnée par l'automatisation, l'intégration continue (CI/CD),
+                    et la gestion des infrastructures cloud. Titulaire d'une <strong>licence en Technologies de l'Informatique
+                    (spécialité MDW)</strong>, je maîtrise les outils modernes de développement, de déploiement et de monitoring.
+                    Mon objectif est de contribuer à des projets innovants en optimisant les processus de développement et de production.
+                </p>
+            </div>
+        </section>
+
+        <!-- Formation -->
+        <section class="section">
+            <h2>Formation</h2>
+            <div class="section-content">
+                <ul>
+                    <li>
+                        <strong>Master DevOps</strong><br>
+                        [Nom de ton Université], Tunisie — <em>2024 - 2026</em><br>
+                        <em>Automatisation, CI/CD, Conteneurisation, Orchestration (Kubernetes), Cloud (AWS/Azure).</em>
+                    </li>
+                    <li>
+                        <strong>Licence en Technologies de l'Informatique (MDW)</strong><br>
+                        [Nom de ton Université], Tunisie — <em>2021 - 2024</em><br>
+                        <em>Développement Web, Bases de Données, Réseaux, Systèmes d'Exploitation.</em>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Expérience -->
+        <section class="section">
+            <h2>Expérience Professionnelle</h2>
+            <div class="section-content">
+                <ul>
+                    <li>
+                        <strong>Stage en Administration Système et DevOps</strong><br>
+                        [Nom de l'Entreprise], [Ville] — <em>Été 2024</em><br>
+                        <em>
+                            - Configuration et gestion de serveurs Linux (Ubuntu/CentOS).<br>
+                            - Automatisation de tâches avec Ansible et Bash.<br>
+                            - Déploiement d'applications avec Docker et Kubernetes.<br>
+                            - Monitoring avec Prometheus et Grafana.
+                        </em>
+                    </li>
+                    <!-- Ajoute d'autres expériences si nécessaire -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section class="section">
+            <h2>Compétences Techniques</h2>
+            <div class="section-content">
+                <div class="skills-container">
+                    <span class="skill">Linux (Ubuntu, CentOS)</span>
+                    <span class="skill">Docker</span>
+                    <span class="skill">Kubernetes (K3S, EKS)</span>
+                    <span class="skill">Ansible</span>
+                    <span class="skill">Terraform</span>
+                    <span class="skill">CI/CD (GitHub Actions, Jenkins)</span>
+                    <span class="skill">AWS / Azure</span>
+                    <span class="skill">Bash / Python</span>
+                    <span class="skill">Nginx / Apache</span>
+                    <span class="skill">Git / GitHub</span>
+                    <span class="skill">Monitoring (Prometheus, Grafana)</span>
+                    <span class="skill">SQL / NoSQL</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projets -->
+        <section class="section">
+            <h2>Projets Académiques et Personnels</h2>
+            <div class="section-content">
+                <div class="project">
+                    <h3>Déploiement d'une Application Web avec Kubernetes</h3>
+                    <p>
+                        Conception d'une architecture microservices déployée sur un cluster K3S.
+                        Utilisation de Docker pour la conteneurisation, Helm pour le packaging,
+                        et Prometheus/Grafana pour le monitoring.
+                    </p>
+                </div>
+                <div class="project">
+                    <h3>Automatisation d'Infrastructure avec Terraform</h3>
+                    <p>
+                        Création d'une infrastructure cloud (AWS) automatisée avec Terraform.
+                        Déploiement de machines virtuelles, de bases de données et de réseaux privés.
+                    </p>
+                </div>
+                <!-- Ajoute d'autres projets si nécessaire -->
+            </div>
+        </section>
+
+        <!-- Langues -->
+        <section class="section">
+            <h2>Langues</h2>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Arabe :</strong> Langue maternelle</li>
+                    <li><strong>Français :</strong> Courant (lu, écrit, parlé)</li>
+                    <li><strong>Anglais :</strong> Technique (documentation, communication)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Pied de page -->
+        <footer>
+            <p>© 2025 Ichrak Yahyaoui | CV mis à jour en octobre 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
