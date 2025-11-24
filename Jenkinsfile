@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "ichrakyhy/cv-onepage" // Remplace par ton repo Docker Hub
-        DOCKER_CREDENTIALS = 'dockerhub'      // ID des credentials Jenkins
-        GIT_REPO = 'https://github.com/yahyaouiichrak/tpauto.git' // Remplace par ton repo GitHub
+        DOCKER_IMAGE = "ichrakyhy/cv-onepage" // Ton repo Docker Hub
+        DOCKER_CREDENTIALS = 'dockerhub'      // ID des credentials Docker Hub
+        GIT_REPO = 'https://github.com/yahyaouiichrak/tpauto.git' // Ton repo GitHub
     }
 
     triggers {
@@ -43,6 +43,9 @@ pipeline {
         }
 
         stage('Notify Slack') {
+            when {
+                expression { return env.SLACK_TOKEN != null } // Slack optionnel
+            }
             steps {
                 slackSend(channel: '#devops', message: "✅ Pipeline terminé avec succès : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
             }
@@ -51,7 +54,11 @@ pipeline {
 
     post {
         failure {
-            slackSend(channel: '#devops', message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
+            script {
+                if (env.SLACK_TOKEN != null) {
+                    slackSend(channel: '#devops', message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
+                }
+            }
         }
     }
 }
