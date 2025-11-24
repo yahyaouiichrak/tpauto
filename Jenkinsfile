@@ -5,7 +5,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "ichrakyhy/cv-onepage" // Remplace par ton repo Docker Hub
         DOCKER_CREDENTIALS = 'dockerhub'      // ID des credentials Jenkins
-        GIT_REPO = 'https://github.com/yahyaouiichrak/tpauto' // Remplace par ton repo GitHub
+        GIT_REPO = 'https://github.com/yahyaouiichrak/tpauto.git' // Remplace par ton repo GitHub
     }
 
     triggers {
