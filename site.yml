@@ -1,0 +1,8 @@
+
+- hosts: devops
+  become: yes
+  roles:
+    - update
+    - docker
+    - terraform
+    - jenkins

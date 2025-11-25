@@ -1,0 +1,47 @@
+
+# roles/jenkins/tasks/main.yml
+---
+- name: Installer les dépendances APT pour Jenkins
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - curl
+    state: present
+    update_cache: yes
+
+- name: Télécharger et convertir la clé GPG Jenkins en keyring
+  command: >
+    curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key |
+    gpg --dearmor |
+    tee /usr/share/keyrings/jenkins-keyring.gpg
+  args:
+    creates: /usr/share/keyrings/jenkins-keyring.gpg
+
+- name: Ajouter le dépôt Jenkins
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.gpg] https://pkg.jenkins.io/debian-stable binary/"
+    filename: jenkins
+    state: present
+
+- name: Mettre à jour le cache APT (ignorer les erreurs GPG)
+  command: apt-get update
+  changed_when: false
+  ignore_errors: yes
+
+- name: Installer Java requis par Jenkins (OpenJDK 17)
+  apt:
+    name: openjdk-17-jdk
+    state: present
+
+- name: Installer Jenkins
+  apt:
+    name: jenkins
+    state: present
+
+- name: Activer et démarrer le service Jenkins
+  service:
+    name: jenkins
+    state: started
+    enabled: yes
