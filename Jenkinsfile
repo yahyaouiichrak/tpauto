@@ -5,6 +5,7 @@ pipeline {
         DOCKER_IMAGE = "ichrakyhy/cv-onepage"
         DOCKER_CREDENTIALS = 'dockerhub'
         GIT_REPO = 'https://github.com/yahyaouiichrak/tpauto.git'
+        SLACK_WEBHOOK = credentials('slack-webhook')  // ton webhook Slack
     }
 
     triggers {
@@ -38,25 +39,27 @@ pipeline {
                 }
             }
         }
-
-        stage('Notify Slack') {
-            steps {
-                slackSend(
-                    channel: '#project',
-                    tokenCredentialId: 'slack-token',
-                    message: "✅ Pipeline terminé avec succès : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})"
-                )
-            }
-        }
     }
 
     post {
+        success {
+            script {
+                sh """
+                curl -X POST -H 'Content-type: application/json' --data "{
+                    \\"text\\": \\":white_check_mark: SUCCESS - Job: ${env.JOB_NAME}, Build: #${env.BUILD_NUMBER}\\"
+                }" ${SLACK_WEBHOOK}
+                """
+            }
+        }
+
         failure {
-            slackSend(
-                channel: '#project',
-                tokenCredentialId: 'slack-token',
-                message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})"
-            )
+            script {
+                sh """
+                curl -X POST -H 'Content-type: application/json' --data "{
+                    \\"text\\": \\":x: FAILED - Job: ${env.JOB_NAME}, Build: #${env.BUILD_NUMBER}\\"
+                }" ${SLACK_WEBHOOK}
+                """
+            }
         }
     }
 }
