@@ -41,14 +41,22 @@ pipeline {
 
         stage('Notify Slack') {
             steps {
-                slackSend(channel: '#project', message: "✅ Pipeline terminé avec succès : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
+                slackSend(
+                    channel: '#project',
+                    tokenCredentialId: 'slack-token',
+                    message: "✅ Pipeline terminé avec succès : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})"
+                )
             }
         }
     }
 
     post {
         failure {
-            slackSend(channel: '#project', message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})")
+            slackSend(
+                channel: '#project',
+                tokenCredentialId: 'slack-token',
+                message: "❌ Pipeline échoué : ${DOCKER_IMAGE} (Build #${BUILD_NUMBER})"
+            )
         }
     }
 }
